@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:id="@+id/ivSummary"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:scaleType="fitCenter"
+        android:transitionName="iv_mill_transition"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPriceSummary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNameSummary"
+        tools:src="@tools:sample/avatars[12]" />
+
+
+        <TextView
+            android:id="@+id/tvNameSummary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:text=" Name"
+            android:textAlignment="textStart"
+            android:textSize="18dp"
+
+            android:textStyle="bold"
+            android:transitionName="tv_mill_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivSummary"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivSummary"
+            app:layout_constraintTop_toBottomOf="@id/tvNameSummary" />
+
+
+        <TextView
+            android:id="@+id/tvIngredientSummary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="Ingredient Summary"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivSummary"
+            app:layout_constraintTop_toBottomOf="@id/line1" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="40dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivSummary"
+            app:layout_constraintTop_toBottomOf="@id/tvIngredientSummary" />
+
+        <TextView
+            android:id="@+id/tvDrinksSummary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="Drinks Summary"
+            android:textAlignment="textStart"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivSummary"
+            app:layout_constraintTop_toBottomOf="@id/line2" />
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="40dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivSummary"
+            app:layout_constraintTop_toBottomOf="@id/tvDrinksSummary" />
+
+        <TextView
+            android:id="@+id/tvPriceSummary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="Total Price"
+            android:textAlignment="textEnd"
+            app:layout_constraintStart_toEndOf="@id/ivSummary"
+            app:layout_constraintTop_toBottomOf="@id/tvDrinksSummary" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#36A9A9A9"
+        app:layout_constraintTop_toBottomOf="@+id/tvPriceSummary" />
+
+
+</android.support.constraint.ConstraintLayout>

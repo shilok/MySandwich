@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+  <android.support.constraint.ConstraintLayout
+      android:id="@+id/cl"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <CheckBox
+          android:id="@+id/cbCart"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:checked="false"
+          android:clickable="true"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+      <ImageView
+          android:id="@+id/iv_img_cart"
+          android:layout_width="100dp"
+          android:layout_height="100dp"
+          android:layout_marginStart="5dp"
+          android:transitionName="iv_mill_transition"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="@id/cbCart"
+          app:layout_constraintBottom_toBottomOf="@id/cbCart"
+          tools:srcCompat="@tools:sample/avatars[12]" />
+
+
+      <TextView
+          android:id="@+id/tv_name_cart"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:text="Mill Name"
+          android:textSize="20dp"
+          android:textStyle="bold"
+          android:transitionName="tv_mill_name"
+          app:layout_constraintEnd_toStartOf="@+id/cbCart"
+          app:layout_constraintStart_toEndOf="@+id/iv_img_cart"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/tv_ingredients_cart"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:text="Ingredient"
+          android:textSize="16sp"
+          android:transitionName="tv_mill_description"
+          app:layout_constraintEnd_toStartOf="@+id/cbCart"
+          app:layout_constraintStart_toEndOf="@+id/iv_img_cart"
+          app:layout_constraintTop_toBottomOf="@+id/tv_name_cart" />
+
+      <TextView
+          android:id="@+id/tv_drinks_cart"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:text="Drinks"
+          android:textSize="16sp"
+          android:transitionName="tv_mill_description"
+          app:layout_constraintEnd_toStartOf="@+id/tvPriceCart"
+          app:layout_constraintStart_toEndOf="@+id/iv_img_cart"
+          app:layout_constraintTop_toBottomOf="@+id/tv_ingredients_cart" />
+
+      <TextView
+          android:id="@+id/tvPriceCart"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:layout_marginBottom="8dp"
+          android:text="Price"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent" />
+
+  </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:id="@+id/line_separate"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#a9a9a9"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/cl"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Mc</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_ingredients">הוסף תוספות</string>
+    <string name="add_drinks">הוסף שתיה</string>
+
+
+    <string name="title_activity_mills" translatable="false">MillsActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="price" translatable="false">מחיר</string>
+    <string name="continue_order">המשך הזמנה</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_test_main2">TestMain2Activity</string>
+    <string name="totalPrice">סה\"כ</string>
+    <string name="totalMills">בצע הזמנה</string>
+    <string name="cartTitle">ארוחות</string>
+
+
+</resources>
