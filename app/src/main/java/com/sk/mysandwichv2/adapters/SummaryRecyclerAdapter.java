@@ -39,7 +39,9 @@ public class SummaryRecyclerAdapter extends RecyclerView.Adapter<SummaryRecycler
         holder.tvIngedients.setText(holder.getSelectedIngredients());
         holder.tvDrinks.setText(holder.getSelectedDrinks());
 
-        Picasso.get().load(holder.mill.getImg()).into(holder.iv);
+        if (holder.mill.getImg() != null) {
+            Picasso.get().load(holder.mill.getImg()).into(holder.iv);
+        }
         holder.tvPrice.setText("₪" + holder.mill.getPrice());
 
     }

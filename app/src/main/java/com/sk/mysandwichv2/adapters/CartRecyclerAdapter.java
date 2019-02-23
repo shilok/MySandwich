@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sk.mysandwichv2.R;
+import com.sk.mysandwichv2.fragments.CartFragment;
 import com.sk.mysandwichv2.mill.Mill;
 import com.squareup.picasso.Picasso;
 
@@ -36,7 +37,8 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
 
     private List<Mill> selectedMills = new ArrayList<>();
     private int millsPriceCounter = 0;
-    private boolean fromCode = false;
+    private CartFragment cartFragment = new CartFragment();
+    public boolean fromCode = false;
 
     public CartRecyclerAdapter(Context context, List<Mill> mills) {
         this.context = context;
@@ -78,6 +80,8 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
 
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (!fromCode) {
+                holder.mill.setSelected(isChecked);
+
                 if (isChecked) {
                     selectedMills.add(holder.mill);
                     millsPriceCounter += holder.mill.getPrice();
@@ -85,10 +89,10 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
                     selectedMills.remove(holder.mill);
                     millsPriceCounter -= holder.mill.getPrice();
                 }
-                holder.mill.setSelected(isChecked);
                 millsCounterUpdate.putExtra("millCounter", millsPriceCounter);
                 millsCounterUpdate.putExtra("selectedMills", (Serializable) selectedMills);
                 millsCounterUpdate.putExtra("mills", (Serializable) mills);
+                millsCounterUpdate.putExtra("mill", (Serializable) holder.mill);
                 LocalBroadcastManager.getInstance(context).sendBroadcast(millsCounterUpdate);
 
             }
