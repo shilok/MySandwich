@@ -329,12 +329,6 @@ public class CartFragment extends Fragment {
 
         setSelectedMillsPrices(selectedMills);
 
-//        millsSelectedCounter = selectedMills.size();
-//        tvMillsCount.setText(totalPrice + ": " + millsPriceCounter + " ₪");
-//        btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")" );
-//
-//        isAllSelected = true;
-
         adapter.notifyDataSetChanged();
         selectAllMills.setVisible(false);
         unSelectAllMills.setVisible(true);
@@ -348,6 +342,9 @@ public class CartFragment extends Fragment {
 
         setSelectedMillsPrices(selectedMills);
         adapter.notifyDataSetChanged();
+
+        selectAllMills.setVisible(true);
+        unSelectAllMills.setVisible(false);
 
     }
 

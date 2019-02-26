@@ -138,6 +138,7 @@ public class OrderFragment extends Fragment implements MillListener {
         BroadcastReceiver receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                System.out.println("Hello");
                 if (getSelectedIngredients().length() > 0)
                     tvIngredientsList.setText(getSelectedIngredients());
                 if (getSelectedDrinks().length() > 0) tvDrinksList.setText(getSelectedDrinks());

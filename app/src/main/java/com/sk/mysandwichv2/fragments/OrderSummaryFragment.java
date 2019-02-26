@@ -1,7 +1,6 @@
 package com.sk.mysandwichv2.fragments;
 
 
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -24,7 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sk.mysandwichv2.R;
-import com.sk.mysandwichv2.adapters.DrinkRecyclerAdapter;
 import com.sk.mysandwichv2.adapters.SummaryRecyclerAdapter;
 import com.sk.mysandwichv2.interfaces.FirebaseAddressesListener;
 import com.sk.mysandwichv2.mill.Drinks;

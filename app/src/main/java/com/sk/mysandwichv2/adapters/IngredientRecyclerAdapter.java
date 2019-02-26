@@ -97,6 +97,7 @@ public class IngredientRecyclerAdapter extends RecyclerView.Adapter<IngredientRe
                 ingredients.setSelected(isChecked);
 
                 if (!fromCode && isChecked) {
+                    System.out.println(ingredients.getPrice());
                     mill.setPrice(mill.getPrice() + ingredients.getPrice());
                     LocalBroadcastManager.getInstance(activity).sendBroadcast(new Intent(checkBoxChanged));
                     animateImage(ivIngredient);
