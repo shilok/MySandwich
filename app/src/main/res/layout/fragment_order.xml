@@ -13,208 +13,216 @@
         android:layout_height="match_parent">
 
 
-
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/main_cl"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/iv_img_order"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:layout_marginStart="8dp"
-            android:cropToPadding="true"
-            android:transitionName="iv_mill_transition"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_ingredients_cart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_name_order"
-            tools:srcCompat="@tools:sample/avatars[12]" />
-
-        <TextView
-            android:id="@+id/tv_name_order"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Mill Name"
-            android:textSize="26dp"
-            android:textStyle="bold"
-            android:transitionName="tv_mill_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_img_order"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_description_order"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Description"
-            android:textSize="16sp"
-            android:transitionName="tv_mill_description"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_img_order"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_order" />
-
-        <TextView
-            android:id="@+id/tv_order_ingredients_list"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text=""
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_img_order"
-            app:layout_constraintTop_toBottomOf="@id/tv_description_order" />
-
-        <TextView
-            android:id="@+id/tv_order_drinks_list"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text=""
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_img_order"
-            app:layout_constraintTop_toBottomOf="@id/tv_order_ingredients_list" />
-
-        <TextView
-            android:id="@+id/tvPriceOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Price"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_order_drinks_list" />
-
-
-        <View
-            android:id="@+id/divider1"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/main_cl"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="68dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_order_drinks_list" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_img_order"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="8dp"
+                android:cropToPadding="true"
+                android:transitionName="iv_mill_transition"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_ingredients_cart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_name_order"
+                tools:srcCompat="@tools:sample/avatars[12]" />
+
+            <TextView
+                android:id="@+id/tv_name_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Mill Name"
+                android:textSize="26dp"
+                android:textStyle="bold"
+                android:transitionName="tv_mill_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_img_order"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_description_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Description"
+                android:textSize="16sp"
+                android:transitionName="tv_mill_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_img_order"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_order" />
+
+            <TextView
+                android:id="@+id/tv_order_ingredients_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_img_order"
+                app:layout_constraintTop_toBottomOf="@id/tv_description_order" />
+
+            <TextView
+                android:id="@+id/tv_order_drinks_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_img_order"
+                app:layout_constraintTop_toBottomOf="@id/tv_order_ingredients_list" />
+
+            <TextView
+                android:id="@+id/tvPriceOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="Price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_order_drinks_list" />
 
 
-        <TextView
-            android:id="@+id/ingredients"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:padding="5dp"
-            android:text="@string/add_ingredients"
-            android:textSize="26dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider1" />
-
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="68dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_order_drinks_list" />
 
 
-        <TextView
-            android:id="@+id/drinks"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:padding="5dp"
-            android:text="@string/add_drinks"
-            android:textSize="26dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+            <TextView
+                android:id="@+id/ingredients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="5dp"
+                android:text="@string/add_ingredients"
+                android:textSize="26dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drinks" />
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
 
+            <TextView
+                android:id="@+id/drinks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="5dp"
+                android:text="@string/add_drinks"
+                android:textSize="26dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-    </android.support.constraint.ConstraintLayout>
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/drinks" />
 
+
+        </android.support.constraint.ConstraintLayout>
 
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
             android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-     >
+            app:layout_constraintBottom_toBottomOf="parent">
+
+
+
 
             <Button
                 android:id="@+id/btnAddToCart"
-                android:layout_width="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:layout_height="40dp"
-                android:text="הוסף ארוחה"
-                android:textSize="20sp"
-                android:background="@drawable/button_order"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-            <Button
-                android:id="@+id/btnEditMill"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/button_order"
-                android:paddingHorizontal="10dp"
-                android:text="סיים עריכה"
-                android:textSize="20sp"
+                android:background="#B0425B84"
+                android:textColor="#FFFFFF"
+                android:text="הוסף לעגלה"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"
-                app:layout_constraintStart_toEndOf="@+id/btnContinueToSummary"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
 
             <Button
                 android:id="@+id/btnContinueToSummary"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorAccent"
+                android:textColor="#FFFFFF"
                 android:text="@string/continue_order"
-                android:background="@drawable/button_order"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" />
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"  />
+
+
+            <Button
+                android:id="@+id/btnEditMill"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorAccent"
+                android:textColor="#FFFFFF"
+                android:text="סיים עריכה"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnAddToCart"
+                app:layout_constraintStart_toEndOf="@+id/btnContinueToSummary"
+                app:layout_constraintTop_toTopOf="parent"  />
+
+
 
         </android.support.constraint.ConstraintLayout>
-
-
 
 
     </android.support.constraint.ConstraintLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
+
+

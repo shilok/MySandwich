@@ -1,6 +1,5 @@
 package com.sk.mysandwichv2.adapters;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -84,17 +83,16 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
 
                 if (isChecked) {
                     selectedMills.add(holder.mill);
-                    millsPriceCounter += holder.mill.getPrice();
+//                    millsPriceCounter += holder.mill.getPrice();
                 } else {
                     selectedMills.remove(holder.mill);
-                    millsPriceCounter -= holder.mill.getPrice();
+//                    millsPriceCounter -= holder.mill.getPrice();
                 }
-                millsCounterUpdate.putExtra("millCounter", millsPriceCounter);
-                millsCounterUpdate.putExtra("selectedMills", (Serializable) selectedMills);
-                millsCounterUpdate.putExtra("mills", (Serializable) mills);
+//                millsCounterUpdate.putExtra("millCounter", millsPriceCounter);
+//                millsCounterUpdate.putExtra("selectedMills", (Serializable) selectedMills);
+//                millsCounterUpdate.putExtra("mills", (Serializable) mills);
                 millsCounterUpdate.putExtra("mill", (Serializable) holder.mill);
                 LocalBroadcastManager.getInstance(context).sendBroadcast(millsCounterUpdate);
-
             }
         });
 
@@ -126,25 +124,8 @@ public class CartRecyclerAdapter extends RecyclerView.Adapter<CartRecyclerAdapte
         updateMillsToPrefs(mills);
         LocalBroadcastManager.getInstance(context).sendBroadcast(updateCartBadge);
 
-        // notify item added by position
     }
 
-    public void onSelectedMillsRemovedListener() {
-        LocalBroadcastManager.getInstance(context).registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                mills.removeAll(selectedMills);
-                notifyDataSetChanged();
-                updateMillsToPrefs(mills);
-                selectedMills = new ArrayList<>();
-                millsPriceCounter = 0;
-                millsCounterUpdate.putExtra("millCounter", millsPriceCounter);
-                millsCounterUpdate.putExtra("selectedMills", (Serializable) selectedMills);
-                LocalBroadcastManager.getInstance(context).sendBroadcast(millsCounterUpdate);
-
-            }
-        }, selectedMillsRemove);
-    }
 
     private void updateMillsToPrefs(List<Mill> listFromPrefs) {
         Gson gson = new Gson();

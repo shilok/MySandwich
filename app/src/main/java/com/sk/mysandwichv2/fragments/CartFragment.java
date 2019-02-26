@@ -29,7 +29,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -55,7 +54,6 @@ public class CartFragment extends Fragment {
 
     private Intent cartToOrder = new Intent("cartToOrder");
     private Intent updateCartBadge = new Intent("updateCartBadge");
-    private Intent selectedMillsRemove = new Intent("selectedMillsRemove");
     private IntentFilter millsCounterUpdate = new IntentFilter("millsCounterUpdate");
 
 
@@ -88,43 +86,39 @@ public class CartFragment extends Fragment {
         tvMillsCount = view.findViewById(R.id.tvMillsCount);
         btnMakeOrder = view.findViewById(R.id.btnMakeOrder);
 
-
+        System.out.println("start cartFragment");
         mills = getListFromPrefs();
-
-
+        selectedMills = new ArrayList<>();
 
 
         totalPrice = getString(R.string.totalPrice);
         makeOrder = getString(R.string.totalMills);
         cartTitle = getString(R.string.cartTitle);
         tvMillsCount.setText(totalPrice + ": " + millsPriceCounter + " ₪");
-        btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")" );
+        btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")");
         getActivity().setTitle(cartTitle + "(" + mills.size() + ")");
 
 
         adapter = new CartRecyclerAdapter(getContext(), mills);
-        adapter.onSelectedMillsRemovedListener();
+//        adapter.onSelectedMillsRemovedListener();
 
 
-        millsCounterListener();
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.setAdapter(adapter);
 
         enableSwipe();
-
         btnMakeOrder.setOnClickListener(v -> btnMakeOrderListener());
-
-
 
 
         return view;
     }
 
+
     private void btnMakeOrderListener() {
         OrderDetails orderDetails = new OrderDetails(selectedMills);
         OrderSummaryFragment orderSummaryFragment = OrderSummaryFragment.newInstance(orderDetails);
         tvMillsCount.setText(totalPrice + ": " + millsPriceCounter + " ₪");
-        btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")" );
+        btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")");
 
         getActivity().getSupportFragmentManager().beginTransaction()
                 .addToBackStack(null)
@@ -137,11 +131,10 @@ public class CartFragment extends Fragment {
         removeItemFromCart = menu.findItem(R.id.removeFromCart);
         selectAllMills = menu.findItem(R.id.selectAll);
         unSelectAllMills = menu.findItem(R.id.unSelectAll);
-        if (!removeItemFromCart.isVisible()) removeItemFromCart.setVisible(true);
-        if (!isAllSelected) selectAllMills.setVisible(true);
-        if (isAllSelected) unSelectAllMills.setVisible(true);
-
         cartBadge = menu.findItem(R.id.action_cart);
+
+        removeItemFromCart.setVisible(true);
+        selectAllMills.setVisible(true);
         cartBadge.setVisible(false);
 
         super.onCreateOptionsMenu(menu, inflater);
@@ -156,18 +149,25 @@ public class CartFragment extends Fragment {
                     snackbar.setActionTextColor(Color.YELLOW);
                     snackbar.show();
                 } else {
-                    LocalBroadcastManager.getInstance(getContext()).sendBroadcast(selectedMillsRemove);
+                    mills.removeAll(selectedMills);
+                    selectedMills = new ArrayList<>();
+                    adapter.notifyDataSetChanged();
+                    updateMillsToPrefs(mills);
+                    setSelectedMillsPrices(selectedMills);
+                    getActivity().setTitle(cartTitle + "(" + mills.size() + ")");
+//                    LocalBroadcastManager.getInstance(getContext()).sendBroadcast(selectedMillsRemove);
                     LocalBroadcastManager.getInstance(getContext()).sendBroadcast(updateCartBadge);
                 }
                 return true;
 
             case R.id.selectAll:
-               selectAllMills();
+                selectAllMills();
                 return true;
 
             case R.id.unSelectAll:
                 unSelectAllMills();
                 return true;
+
 
         }
         return super.onOptionsItemSelected(item);
@@ -200,18 +200,28 @@ public class CartFragment extends Fragment {
                     Mill deletedModel = mills.get(position);
                     int deletedPosition = position;
                     adapter.removeItem(position);
+                    getActivity().setTitle(cartTitle + "(" + mills.size() + ")");
 
                     Snackbar snackbar = Snackbar.make(coordinatorLayout, deletedModel.getName() + " הוסר", Snackbar.LENGTH_LONG);
-                    snackbar.setAction("בטל", view -> adapter.restoreItem(deletedModel, deletedPosition));
+                    snackbar.setAction("בטל", v -> {
+                        adapter.restoreItem(deletedModel, deletedPosition);
+                        getActivity().setTitle(cartTitle + "(" + mills.size() + ")");
+                    });
+
                     snackbar.setActionTextColor(Color.YELLOW);
                     snackbar.show();
                 } else {
-                    Mill deletedModel = mills.get(position);
+                    Mill model = mills.get(position);
                     int deletedPosition = position;
 
                     cartToOrder.putExtra("mill", (Parcelable) mills.get(position));
                     cartToOrder.putExtra("position", position);
-                    LocalBroadcastManager.getInstance(getContext()).sendBroadcast(cartToOrder);
+                    OrderFragment orderFragment = OrderFragment.newInstance(model, true, position);
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .addToBackStack(null)
+                            .replace(R.id.main_container, orderFragment, "orderFragment")
+                            .commit();
+//                    LocalBroadcastManager.getInstance(getContext()).sendBroadcast(cartToOrder);
 
                 }
 
@@ -236,11 +246,13 @@ public class CartFragment extends Fragment {
                         icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_edit);
                         RectF icon_dest = new RectF((float) itemView.getLeft() + width, (float) itemView.getTop() + width, (float) itemView.getLeft() + 2 * width, (float) itemView.getBottom() - width);
                         c.drawBitmap(icon, null, icon_dest, p);
+
                     } else {
                         p.setColor(Color.parseColor("#D32F2F"));
                         RectF background = new RectF((float) itemView.getRight() + dX, (float) itemView.getTop(), (float) itemView.getRight(), (float) itemView.getBottom());
                         c.drawRect(background, p);
-                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.delete);
+//                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.delete);
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_delete);
                         RectF icon_dest = new RectF(
                                 (float) itemView.getRight() - 2 * width,
                                 (float) itemView.getTop() + width,
@@ -248,6 +260,7 @@ public class CartFragment extends Fragment {
                                 (float) itemView.getBottom() - width);
 
                         c.drawBitmap(icon, null, icon_dest, p);
+
 
                     }
                 }
@@ -259,13 +272,24 @@ public class CartFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+//        millsCounterListener();
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(millsCounterReceiver, millsCounterUpdate);
+
+    }
+
+    @Override
     public void onPause() {
         cartBadge.setVisible(true);
         millsPriceCounter = 0;
         millsSelectedCounter = 0;
+        cleanSelectedMillsFromPrefs(getMillsFromPrefs());
 
         getActivity().setTitle("Mc");
         super.onPause();
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(millsCounterReceiver);
+
     }
 
     private List<Mill> getListFromPrefs() {
@@ -280,7 +304,21 @@ public class CartFragment extends Fragment {
         return mills;
     }
 
-    private void selectAllMills(){
+    private List<Mill> getMillsFromPrefs() {
+        Gson gson = new Gson();
+
+        SharedPreferences pref = getActivity().getSharedPreferences("mill", Context.MODE_PRIVATE);
+        List<Mill> mills;
+        String jsonMill = pref.getString("mill", null);
+        if (jsonMill == null) {
+            mills = new ArrayList<>();
+        } else {
+            mills = gson.fromJson(jsonMill, millListTypeToken);
+        }
+        return mills;
+    }
+
+    private void selectAllMills() {
         millsPriceCounter = 0;
         selectedMills = new ArrayList<>();
         for (Mill mill : mills) {
@@ -289,80 +327,76 @@ public class CartFragment extends Fragment {
             selectedMills.add(mill);
         }
 
+        setSelectedMillsPrices(selectedMills);
 
-        millsSelectedCounter = selectedMills.size();
-        tvMillsCount.setText(totalPrice + ": " + millsPriceCounter + " ₪");
-        btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")" );
-
-        isAllSelected = true;
+//        millsSelectedCounter = selectedMills.size();
+//        tvMillsCount.setText(totalPrice + ": " + millsPriceCounter + " ₪");
+//        btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")" );
+//
+//        isAllSelected = true;
 
         adapter.notifyDataSetChanged();
         selectAllMills.setVisible(false);
         unSelectAllMills.setVisible(true);
     }
 
-    private void unSelectAllMills(){
+    private void unSelectAllMills() {
         for (Mill mill : mills) {
             mill.setSelected(false);
         }
         selectedMills = new ArrayList<>();
-        millsSelectedCounter = 0;
-        millsPriceCounter = 0;
 
-        tvMillsCount.setText(totalPrice + ": " + millsPriceCounter + " ₪");
-        btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")" );
-
-
+        setSelectedMillsPrices(selectedMills);
         adapter.notifyDataSetChanged();
 
     }
 
-    private int getSelectedMills(List<Mill> mills){
+    private int getSelectedMills(List<Mill> mills) {
         int result = 0;
         for (Mill mill : mills) {
-            if (mill.isSelected()){
+            if (mill.isSelected()) {
                 result += mill.getPrice();
             }
         }
         return result;
     }
 
-    private void millsCounterListener() {
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(millsCounterReceiver, millsCounterUpdate);
+
+    private void setSelectedMillsPrices(List<Mill> selectedMills) {
+        int price = 0;
+        for (Mill mill : selectedMills) {
+            price += mill.getPrice();
+        }
+        btnMakeOrder.setText(makeOrder + "(" + selectedMills.size() + ")");
+        tvMillsCount.setText(totalPrice + ": " + price + " ₪");
     }
 
+
+    private void cleanSelectedMillsFromPrefs(List<Mill> mills) {
+        for (Mill mill : mills) {
+            if (mill.isSelected()) mill.setSelected(false);
+        }
+        updateMillsToPrefs(mills);
+    }
 
 
     BroadcastReceiver millsCounterReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-//            millsPriceCounter = intent.getIntExtra("millCounter", 0);
-//            selectedMills = (List<Mill>) intent.getSerializableExtra("selectedMills");
-//            mills = (List<Mill>) intent.getSerializableExtra("mills");
-
-
             Mill mill = (Mill) intent.getSerializableExtra("mill");
-
-
-
-
-            if (mill.isSelected()){
-                millsPriceCounter += mill.getPrice();
+            if (mill.isSelected()) {
                 selectedMills.add(mill);
-            }else {
-                millsPriceCounter -= mill.getPrice();
+            } else {
                 selectedMills.remove(mill);
             }
-            millsSelectedCounter = selectedMills.size();
 
-            btnMakeOrder.setText(makeOrder + "(" + millsSelectedCounter + ")" );
-            getActivity().setTitle(cartTitle + "(" + mills.size() + ")");
-            tvMillsCount.setText(totalPrice + ": " + millsPriceCounter + " ₪");
+            setSelectedMillsPrices(selectedMills);
 
-            if (mills.size() == selectedMills.size()){
+
+            if (mills.size() == selectedMills.size()) {
                 selectAllMills.setVisible(false);
                 unSelectAllMills.setVisible(true);
-            }else {
+            } else {
                 selectAllMills.setVisible(true);
                 unSelectAllMills.setVisible(false);
             }

@@ -2,17 +2,16 @@ package com.sk.mysandwichv2.fragments;
 
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.transition.Fade;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,8 +34,7 @@ public class CategoryViewFragment extends Fragment implements FirebaseCategories
     private ViewPager pager;
     private CategoryViewAdapter categoryViewAdapter;
     private TabLayout tabs;
-    private Intent enterToViewFragment = new Intent("enterToViewFragment");
-    private Intent exitFromViewFragment = new Intent("exitFromViewFragment");
+    private ImageView ivCollapseToolbar;
 
 
 
@@ -44,12 +42,10 @@ public class CategoryViewFragment extends Fragment implements FirebaseCategories
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category_view, container, false);
-        Fade exitFade = new Fade();
-        exitFade.setDuration(750);
-        setExitTransition(exitFade);
 
         pager = view.findViewById(R.id.pager);
         tabs = view.findViewById(R.id.tabs);
+        ivCollapseToolbar = getActivity().findViewById(R.id.ivCollapseToolbar);
 
         readCategoriesData();
         pager.setAdapter(categoryViewAdapter);
@@ -102,13 +98,13 @@ public class CategoryViewFragment extends Fragment implements FirebaseCategories
 
     @Override
     public void onResume() {
-        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(enterToViewFragment);
+        ivCollapseToolbar.setVisibility(View.VISIBLE);
         super.onResume();
     }
 
     @Override
     public void onPause() {
-        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(exitFromViewFragment);
+        ivCollapseToolbar.setVisibility(View.GONE);
         super.onPause();
     }
 }

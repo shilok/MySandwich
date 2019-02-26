@@ -20,6 +20,11 @@
     <string name="totalPrice">סה\"כ</string>
     <string name="totalMills">בצע הזמנה</string>
     <string name="cartTitle">ארוחות</string>
+    <string name="placeOrder">שלם כעת</string>
+    <string name="mills">מחיר ארוחות:</string>
+    <string name="shipping">משלוח:</string>
+    <string name="tvTotalPrice">מחיר כולל:</string>
+    <string name="freeShipping">ללא עלות</string>
 
 
 </resources>

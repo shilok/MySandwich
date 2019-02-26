@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sk.mysandwichv2.R;
-//import com.sk.mysandwichv2.adapters.IngredientSpinnerAdapter;
 import com.sk.mysandwichv2.interfaces.MillListener;
 import com.sk.mysandwichv2.mill.Mill;
 import com.squareup.picasso.Picasso;
@@ -30,6 +28,7 @@ import com.squareup.picasso.Picasso;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class OrderFragment extends Fragment implements MillListener {
@@ -63,12 +62,7 @@ public class OrderFragment extends Fragment implements MillListener {
         return fragment;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setEnterTransition(R.anim.enter_slide_in_left);
-        setExitTransition(R.anim.exit_slide_out_right);
-    }
+
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -234,8 +228,10 @@ public class OrderFragment extends Fragment implements MillListener {
         mills = getMillsFromPrefs();
         mills.set(position, mill);
         updateMillsToPrefs(mills);
-        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
-                .replace(R.id.main_container, new CartFragment(), "cartFragment").commit();
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.main_container, new CartFragment()).commit();
+//            getFragmentManager().beginTransaction().addToBackStack(null)
+//                    .replace(R.id.main_container, new CartFragment(), "cartFragment").commit();
+
     });
 
     View.OnClickListener btnAddToCartListener = (v -> {

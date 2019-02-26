@@ -6,6 +6,21 @@ import java.util.List;
 public class OrderDetails implements Serializable {
     private List<Mill> mills;
     private ShippingAddress address;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public OrderDetails(List<Mill> mills, ShippingAddress address, String status) {
+        this.mills = mills;
+        this.address = address;
+        this.status = status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public OrderDetails(List<Mill> mills, ShippingAddress address) {
         this.mills = mills;

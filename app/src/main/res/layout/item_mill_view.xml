@@ -49,7 +49,7 @@
             android:maxLines="2"
             android:padding="5dp"
             android:scrollHorizontally="true"
-            android:text="Text Descriptionssssss"
+            android:text="Text Description"
             android:transitionName="tv_mill_description"
             app:layout_constraintBottom_toTopOf="@+id/tv_mill_price"
             app:layout_constraintEnd_toEndOf="parent"

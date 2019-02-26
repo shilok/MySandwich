@@ -61,11 +61,11 @@ public class AddressFragment extends Fragment {
             orderDetails = (OrderDetails) getArguments().getSerializable("orderDetails");
             boolean isHaveAddress = getArguments().getBoolean("isHaveAddress");
             if (!isHaveAddress){
-                dialogFragmentAddress.show(getFragmentManager(), "dialogAddressFragment");
+                dialogFragmentAddress.show(getActivity().getSupportFragmentManager(), "dialogAddressFragment");
             }
         }
 
-        tvAddAddress.setOnClickListener(v -> dialogFragmentAddress.show(getFragmentManager(), "dialogAddressFragment"));
+        tvAddAddress.setOnClickListener(v -> dialogFragmentAddress.show(getActivity().getSupportFragmentManager(), "dialogAddressFragment"));
 
         setupRecycler();
         setupSwipe();
@@ -121,6 +121,7 @@ public class AddressFragment extends Fragment {
 
                 if (direction == ItemTouchHelper.LEFT) {
                     adapter.getRef(position).removeValue();
+
                 }
 
             }
@@ -140,7 +141,7 @@ public class AddressFragment extends Fragment {
                         p.setColor(Color.parseColor("#D32F2F"));
                         RectF background = new RectF((float) itemView.getRight() + dX, (float) itemView.getTop(), (float) itemView.getRight(), (float) itemView.getBottom());
                         c.drawRect(background, p);
-                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.delete);
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_delete);
                         RectF icon_dest = new RectF(
                                 (float) itemView.getRight() - 2 * width,
                                 (float) itemView.getTop() + width,

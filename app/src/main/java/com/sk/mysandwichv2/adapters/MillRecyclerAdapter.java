@@ -1,6 +1,5 @@
 package com.sk.mysandwichv2.adapters;
 
-import android.graphics.Color;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.transition.Fade;
@@ -8,7 +7,6 @@ import android.support.transition.TransitionInflater;
 import android.support.transition.TransitionSet;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +38,6 @@ public class MillRecyclerAdapter extends FirebaseRecyclerAdapter<Mill, MillRecyc
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Mill model) {
         holder.mill = model;
         String price = activity.getResources().getString(R.string.price);
-//        setBackgroudColor(position, holder.itemView);
 
         holder.tvName.setText(model.getName());
         holder.tvDescription.setText(model.getDescription());
@@ -117,25 +114,8 @@ public class MillRecyclerAdapter extends FirebaseRecyclerAdapter<Mill, MillRecyc
 
             }, 1000);
 
-//            activity.getSupportFragmentManager().beginTransaction()
-//                    .addToBackStack(null)
-//                    .replace(R.id.main_container, orderFragment, "orderFragment")
-//                    .commit();
-
-//            Intent intent = new Intent("rvFragmentToOrderFragment");
-//            intent.putExtra("mill", (Parcelable) mill);
-//            LocalBroadcastManager.getInstance(activity.getApplicationContext()).sendBroadcast(intent);
 
         }
     }
 
-    private void setBackgroudColor(int position, View view){
-        CardView cvMill = view.findViewById(R.id.cv_mill);
-        boolean b = position % 2 == 0;
-        if (b){
-            cvMill.setCardBackgroundColor(Color.rgb(232, 234, 237));
-        }else {
-            cvMill.setCardBackgroundColor(Color.rgb(208, 211, 216));
-        }
-    }
 }

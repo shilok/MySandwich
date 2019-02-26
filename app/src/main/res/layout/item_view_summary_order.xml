@@ -6,15 +6,23 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#36A9A9A9"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ImageView
         android:id="@+id/ivSummary"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:scaleType="fitCenter"
-        android:transitionName="iv_mill_transition"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvPriceSummary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvNameSummary"
+        app:layout_constraintTop_toBottomOf="@+id/line"
         tools:src="@tools:sample/avatars[12]" />
 
 
@@ -26,12 +34,11 @@
             android:text=" Name"
             android:textAlignment="textStart"
             android:textSize="18dp"
-
+            android:layout_marginTop="10dp"
             android:textStyle="bold"
-            android:transitionName="tv_mill_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivSummary"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/line" />
 
         <View
             android:id="@+id/line1"
@@ -61,6 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivSummary"
@@ -71,7 +79,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:text="Drinks Summary"
             android:textAlignment="textStart"
             android:textSize="16dp"
@@ -84,6 +92,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivSummary"
@@ -98,15 +107,17 @@
             android:text="Total Price"
             android:textAlignment="textEnd"
             app:layout_constraintStart_toEndOf="@id/ivSummary"
-            app:layout_constraintTop_toBottomOf="@id/tvDrinksSummary" />
-
+            app:layout_constraintTop_toBottomOf="@id/line3" />
 
     <View
+        android:id="@+id/line4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="#36A9A9A9"
-        app:layout_constraintTop_toBottomOf="@+id/tvPriceSummary" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPriceSummary"/>
+
+
 
 
 </android.support.constraint.ConstraintLayout>

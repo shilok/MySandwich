@@ -30,7 +30,6 @@
           android:layout_width="100dp"
           android:layout_height="100dp"
           android:layout_marginStart="5dp"
-          android:transitionName="iv_mill_transition"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="@id/cbCart"
           app:layout_constraintBottom_toBottomOf="@id/cbCart"
@@ -47,7 +46,6 @@
           android:text="Mill Name"
           android:textSize="20dp"
           android:textStyle="bold"
-          android:transitionName="tv_mill_name"
           app:layout_constraintEnd_toStartOf="@+id/cbCart"
           app:layout_constraintStart_toEndOf="@+id/iv_img_cart"
           app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +59,6 @@
           android:layout_marginEnd="8dp"
           android:text="Ingredient"
           android:textSize="16sp"
-          android:transitionName="tv_mill_description"
           app:layout_constraintEnd_toStartOf="@+id/cbCart"
           app:layout_constraintStart_toEndOf="@+id/iv_img_cart"
           app:layout_constraintTop_toBottomOf="@+id/tv_name_cart" />
@@ -75,7 +72,6 @@
           android:layout_marginEnd="8dp"
           android:text="Drinks"
           android:textSize="16sp"
-          android:transitionName="tv_mill_description"
           app:layout_constraintEnd_toStartOf="@+id/tvPriceCart"
           app:layout_constraintStart_toEndOf="@+id/iv_img_cart"
           app:layout_constraintTop_toBottomOf="@+id/tv_ingredients_cart" />
